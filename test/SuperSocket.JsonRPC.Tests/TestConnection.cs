@@ -1,7 +1,7 @@
 using System.Buffers;
 using SuperSocket.Connection;
 
-namespace SuperSocket.JsonRPC.Tests;
+namespace SuperSocket.JsonRpc.Tests;
 
 public class TestConnection : VirtualConnection
 {

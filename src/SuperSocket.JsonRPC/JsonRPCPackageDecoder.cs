@@ -2,11 +2,11 @@ using System.Buffers;
 using System.Text.Json;
 using SuperSocket.ProtoBase;
 
-namespace SuperSocket.JsonRPC;
+namespace SuperSocket.JsonRpc;
 
-public class JsonRPCPackageDecoder : IPackageDecoder<JsonRPCPackageInfo>
+public class JsonRPCPackageDecoder : IPackageDecoder<JsonRpcPackageInfo>
 {
-    public JsonRPCPackageInfo Decode(ref ReadOnlySequence<byte> buffer, object context)
+    public JsonRpcPackageInfo Decode(ref ReadOnlySequence<byte> buffer, object context)
     {
         var jsonReader = new Utf8JsonReader(buffer);
         var jsonElement = JsonElement.ParseValue(ref jsonReader);
@@ -20,8 +20,8 @@ public class JsonRPCPackageDecoder : IPackageDecoder<JsonRPCPackageInfo>
         // Decode batch requests
         var enumerator = jsonElement.EnumerateArray();
 
-        var firstPackage = default(JsonRPCPackageInfo);
-        var prevPackage = default(JsonRPCPackageInfo);
+        var firstPackage = default(JsonRpcPackageInfo);
+        var prevPackage = default(JsonRpcPackageInfo);
 
         while (enumerator.MoveNext())
         {
@@ -44,9 +44,9 @@ public class JsonRPCPackageDecoder : IPackageDecoder<JsonRPCPackageInfo>
         return firstPackage;
     }
 
-    private JsonRPCPackageInfo DecodeElement(ref JsonElement jsonElement)
+    private JsonRpcPackageInfo DecodeElement(ref JsonElement jsonElement)
     {
-        return new JsonRPCPackageInfo
+        return new JsonRpcPackageInfo
         {
             Version = jsonElement.GetProperty("jsonrpc").GetString(),
             Id = jsonElement.GetProperty("id").ToString(),

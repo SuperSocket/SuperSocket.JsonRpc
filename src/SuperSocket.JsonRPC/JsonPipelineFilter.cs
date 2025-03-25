@@ -1,11 +1,11 @@
-﻿namespace SuperSocket.JsonRPC;
+﻿namespace SuperSocket.JsonRpc;
 
 using System.Buffers;
 using System.Text;
 using System.Text.Json;
 using SuperSocket.ProtoBase;
 
-public class JsonPipelineFilter : IPipelineFilter<JsonRPCPackageInfo>
+public class JsonPipelineFilter : IPipelineFilter<JsonRpcPackageInfo>
 {
     private static readonly char nodeStart = '{';
 
@@ -25,13 +25,13 @@ public class JsonPipelineFilter : IPipelineFilter<JsonRPCPackageInfo>
 
     private long? consumed;
 
-    public IPackageDecoder<JsonRPCPackageInfo> Decoder { get; set; }
+    public IPackageDecoder<JsonRpcPackageInfo> Decoder { get; set; }
 
-    public IPipelineFilter<JsonRPCPackageInfo> NextFilter { get; } = null;
+    public IPipelineFilter<JsonRpcPackageInfo> NextFilter { get; } = null;
 
     public object Context { get; set; }
 
-    public JsonRPCPackageInfo Filter(ref SequenceReader<byte> reader)
+    public JsonRpcPackageInfo Filter(ref SequenceReader<byte> reader)
     {
         var sequence = reader.Sequence;
 

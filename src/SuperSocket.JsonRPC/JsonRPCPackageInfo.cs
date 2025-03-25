@@ -1,8 +1,8 @@
-namespace SuperSocket.JsonRPC;
+namespace SuperSocket.JsonRpc;
 
 using System.Text.Json;
 
-public class JsonRPCPackageInfo
+public class JsonRpcPackageInfo
 {
     public string Version { get; set; }
 
@@ -12,5 +12,5 @@ public class JsonRPCPackageInfo
 
     public JsonElement Parameters { get; set; }
 
-    public JsonRPCPackageInfo Next { get; set; }
+    public JsonRpcPackageInfo Next { get; set; }
 }

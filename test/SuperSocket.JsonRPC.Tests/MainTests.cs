@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using SuperSocket.Connection;
 
-namespace SuperSocket.JsonRPC.Tests;
+namespace SuperSocket.JsonRpc.Tests;
 
 public class MainTests
 {
@@ -10,7 +10,7 @@ public class MainTests
     public async Task TestNormalPipelineFilter()
     {
         var connection = new TestConnection(new ConnectionOptions());
-        var packageStream = connection.RunAsync<JsonRPCPackageInfo>(new JsonPipelineFilter
+        var packageStream = connection.RunAsync<JsonRpcPackageInfo>(new JsonPipelineFilter
         {
             Decoder = new JsonRPCPackageDecoder()
         });

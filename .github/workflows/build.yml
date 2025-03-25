@@ -29,11 +29,11 @@ jobs:
                 echo "DOTNET_hostBuilder:reloadConfigOnChange=false" >> $GITHUB_ENV
             - name: Clean
               run: |
-                dotnet clean ./SuperSocket.JsonRPC.sln --configuration Release
+                dotnet clean ./SuperSocket.JsonRpc.sln --configuration Release
                 dotnet nuget locals all --clear
             - name: Build
               run: dotnet build -c Release
             - name: Test
               run: |
-                cd test/SuperSocket.JsonRPC.Tests
+                cd test/SuperSocket.JsonRpc.Tests
                 dotnet test --logger "console;verbosity=detailed"
