@@ -4,11 +4,11 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.JsonRPC", "src\SuperSocket.JsonRPC\SuperSocket.JsonRPC.csproj", "{154DEE62-0F45-5FFE-7DA9-966EFE7C0584}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.JsonRpc", "src\SuperSocket.JsonRpc\SuperSocket.JsonRpc.csproj", "{154DEE62-0F45-5FFE-7DA9-966EFE7C0584}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3F564080-14C7-4AB9-AF77-D022045B9D1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.JsonRPC.Tests", "test\SuperSocket.JsonRPC.Tests\SuperSocket.JsonRPC.Tests.csproj", "{E7431221-CCC2-4CD1-9944-B75BAF29924C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.JsonRpc.Tests", "test\SuperSocket.JsonRpc.Tests\SuperSocket.JsonRpc.Tests.csproj", "{E7431221-CCC2-4CD1-9944-B75BAF29924C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
