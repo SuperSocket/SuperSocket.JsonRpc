@@ -5,8 +5,8 @@
     <TargetFrameworks>$(DotNetTargetFrameworks)</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup>
-    <PackageProjectUrl>https://github.com/SuperSocket/SuperSocket.JsonRPC</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/SuperSocket/SuperSocket.JsonRPC.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/SuperSocket/SuperSocket.JsonRpc</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SuperSocket/SuperSocket.JsonRpc.git</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
