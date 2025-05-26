@@ -10,11 +10,11 @@ namespace SuperSocket.JsonRpc.Caller;
 /// <summary>
 /// A JSON-RPC client that uses SuperSocket.Client to communicate with JSON-RPC servers
 /// </summary>
-class JsonRpcCaller : EasyClient<JsonRpcResponse>, IRpcConnection
+class JsonRpcCallerConnection : EasyClient<JsonRpcResponse>, IRpcConnection
 {
     private readonly JsonRpcRequestEncoder _encoder = new JsonRpcRequestEncoder();
 
-    public JsonRpcCaller()
+    public JsonRpcCallerConnection()
         : base(new JsonRpcResponsePipelineFilter()
         {
             Decoder = new JsonRpcResponseDecoder()

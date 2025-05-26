@@ -1,15 +1,16 @@
 using System;
 using System.Net;
 using NRPC.Abstractions;
-using NRPC.Client;
+using NRPC.Caller;
+using SuperSocket.Connection;
 
 namespace SuperSocket.JsonRpc.Caller
 {
-    public class JsonRpcCallerFactory : IClientFactory<IRpcConnection>
+    public class JsonRpcCallerConnectionFactory : IRpcConnectionFactory
     {
         public EndPoint EndPoint { get; }
         
-        public JsonRpcCallerFactory(EndPoint endPoint)
+        public JsonRpcCallerConnectionFactory(EndPoint endPoint)
         {
             if (endPoint == null)
                 throw new ArgumentNullException(nameof(endPoint), "EndPoint cannot be null.");
@@ -17,9 +18,9 @@ namespace SuperSocket.JsonRpc.Caller
             EndPoint = endPoint;
         }
 
-        public async Task<IRpcConnection> CreateClient()
+        public async Task<IRpcConnection> CreateConnection()
         {
-            var connection = new JsonRpcCaller();
+            var connection = new JsonRpcCallerConnection();
             await connection.AsClient().ConnectAsync(EndPoint);
             return connection;
         }

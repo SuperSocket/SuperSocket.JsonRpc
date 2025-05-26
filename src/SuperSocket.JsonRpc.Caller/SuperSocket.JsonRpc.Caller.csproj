@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="SuperSocket.Client" />
-    <PackageReference Include="NRPC.Client" />
+    <PackageReference Include="NRPC.Caller" />
   </ItemGroup>
 
   <ItemGroup>
