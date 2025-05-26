@@ -1,9 +1,10 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <SuperSocketVersion>2.0.0-beta.30</SuperSocketVersion>
+    <SuperSocketVersion>2.0.2-beta.1</SuperSocketVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="NRPC.Abstractions" Version="0.1.0-beta.1.14" />
     <PackageVersion Include="SuperSocket.ProtoBase" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket.Connection" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />

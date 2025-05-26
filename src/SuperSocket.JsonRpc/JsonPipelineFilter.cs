@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using SuperSocket.ProtoBase;
 
-public class JsonPipelineFilter : IPipelineFilter<JsonRpcPackageInfo>
+public abstract class JsonPipelineFilter<TJsonRpcPackage> : IPipelineFilter<TJsonRpcPackage>
 {
     private static readonly char nodeStart = '{';
 
@@ -25,13 +25,13 @@ public class JsonPipelineFilter : IPipelineFilter<JsonRpcPackageInfo>
 
     private long? consumed;
 
-    public IPackageDecoder<JsonRpcPackageInfo> Decoder { get; set; }
+    public IPackageDecoder<TJsonRpcPackage> Decoder { get; set; }
 
-    public IPipelineFilter<JsonRpcPackageInfo> NextFilter { get; } = null;
+    public IPipelineFilter<TJsonRpcPackage> NextFilter { get; } = null;
 
     public object Context { get; set; }
 
-    public JsonRpcPackageInfo Filter(ref SequenceReader<byte> reader)
+    public TJsonRpcPackage Filter(ref SequenceReader<byte> reader)
     {
         var sequence = reader.Sequence;
 

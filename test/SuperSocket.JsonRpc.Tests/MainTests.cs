@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using SuperSocket.Connection;
 
@@ -10,9 +11,9 @@ public class MainTests
     public async Task TestNormalPipelineFilter()
     {
         var connection = new TestConnection(new ConnectionOptions());
-        var packageStream = connection.RunAsync<JsonRpcPackageInfo>(new JsonPipelineFilter
+        var packageStream = connection.RunAsync<JsonRpcRequest>(new JsonRpcRequestPipelineFilter()
         {
-            Decoder = new JsonRPCPackageDecoder()
+            Decoder = new JsonRpcRequestDecoder()
         });
 
         var packageReader = packageStream.GetAsyncEnumerator(TestContext.Current.CancellationToken);
@@ -27,9 +28,9 @@ public class MainTests
         Assert.NotNull(package);
         Assert.Equal("2.0", package.Version);
         Assert.Equal("subtract", package.Method);
-        Assert.Equal(2, package.Parameters.GetArrayLength());
-        Assert.Equal(42, package.Parameters[0].TryGetInt32(out var value1) ? value1 : 0);
-        Assert.Equal(23, package.Parameters[1].TryGetInt32(out var value2) ? value2 : 0);
+        Assert.Equal(2, package.Parameters.Length);
+        Assert.Equal(42, ((JsonElement)package.Parameters[0]).TryGetInt32(out var value1) ? value1 : 0);
+        Assert.Equal(23, ((JsonElement)package.Parameters[1]).TryGetInt32(out var value2) ? value2 : 0);
         Assert.Equal("1", package.Id);
 
         // Test batch requests
@@ -42,9 +43,9 @@ public class MainTests
         Assert.NotNull(firstPackage);
         Assert.Equal("2.0", firstPackage.Version);
         Assert.Equal("subtract1", firstPackage.Method);
-        Assert.Equal(2, firstPackage.Parameters.GetArrayLength());
-        Assert.Equal(42, firstPackage.Parameters[0].TryGetInt32(out var value21) ? value21 : 0);
-        Assert.Equal(23, firstPackage.Parameters[1].TryGetInt32(out var value22) ? value22 : 0);
+        Assert.Equal(2, firstPackage.Parameters.Length);
+        Assert.Equal(42, ((JsonElement)firstPackage.Parameters[0]).TryGetInt32(out var value21) ? value21 : 0);
+        Assert.Equal(23, ((JsonElement)firstPackage.Parameters[1]).TryGetInt32(out var value22) ? value22 : 0);
         Assert.Equal("1", package.Id);
 
         var secondPackage = firstPackage.Next;
@@ -52,9 +53,9 @@ public class MainTests
         Assert.NotNull(secondPackage);
         Assert.Equal("2.0", secondPackage.Version);
         Assert.Equal("subtract2", secondPackage.Method);
-        Assert.Equal(2, secondPackage.Parameters.GetArrayLength());
-        Assert.Equal(52, secondPackage.Parameters[0].TryGetInt32(out var value31) ? value31 : 0);
-        Assert.Equal(33, secondPackage.Parameters[1].TryGetInt32(out var value32) ? value32 : 0);
+        Assert.Equal(2, secondPackage.Parameters.Length);
+        Assert.Equal(52, ((JsonElement)secondPackage.Parameters[0]).TryGetInt32(out var value31) ? value31 : 0);
+        Assert.Equal(33, ((JsonElement)secondPackage.Parameters[1]).TryGetInt32(out var value32) ? value32 : 0);
         Assert.Equal("2", secondPackage.Id);
     }
 }
