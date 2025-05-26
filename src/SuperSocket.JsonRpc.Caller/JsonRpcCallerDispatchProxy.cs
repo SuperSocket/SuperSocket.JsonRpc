@@ -6,7 +6,7 @@ using NRPC.Client;
 
 namespace SuperSocket.JsonRpc.Caller
 {
-    class JsonRpcClientDispatchProxy : ClientDispatchProxy
+    class JsonRpcCallerDispatchProxy : ClientDispatchProxy
     {
         protected override RpcRequest CreateRequest(MethodInfo targetMethod, object[] args)
         {
