@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SuperSocket.Client" />
+    <PackageReference Include="NRPC.Client" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../SuperSocket.JsonRpc/SuperSocket.JsonRpc.csproj" />
+  </ItemGroup>
+
+</Project>

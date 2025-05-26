@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.JsonRpc", "src\SuperSocket.JsonRpc\SuperSocket.JsonRpc.csproj", "{154DEE62-0F45-5FFE-7DA9-966EFE7C0584}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.JsonRpc.Caller", "src\SuperSocket.JsonRpc.Caller\SuperSocket.JsonRpc.Caller.csproj", "{A1B2C3D4-E5F6-7890-1234-567890ABCDEF}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3F564080-14C7-4AB9-AF77-D022045B9D1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.JsonRpc.Tests", "test\SuperSocket.JsonRpc.Tests\SuperSocket.JsonRpc.Tests.csproj", "{E7431221-CCC2-4CD1-9944-B75BAF29924C}"
@@ -20,6 +22,10 @@ Global
 		{154DEE62-0F45-5FFE-7DA9-966EFE7C0584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{154DEE62-0F45-5FFE-7DA9-966EFE7C0584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{154DEE62-0F45-5FFE-7DA9-966EFE7C0584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-1234-567890ABCDEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-1234-567890ABCDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-1234-567890ABCDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-1234-567890ABCDEF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E7431221-CCC2-4CD1-9944-B75BAF29924C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E7431221-CCC2-4CD1-9944-B75BAF29924C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7431221-CCC2-4CD1-9944-B75BAF29924C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,6 +36,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{154DEE62-0F45-5FFE-7DA9-966EFE7C0584} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{A1B2C3D4-E5F6-7890-1234-567890ABCDEF} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{E7431221-CCC2-4CD1-9944-B75BAF29924C} = {3F564080-14C7-4AB9-AF77-D022045B9D1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
