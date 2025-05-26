@@ -7,6 +7,8 @@
     <PackageVersion Include="NRPC.Abstractions" Version="0.1.0-beta.1.14" />
     <PackageVersion Include="SuperSocket.ProtoBase" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket.Connection" Version="$(SuperSocketVersion)" />
+    <PackageVersion Include="SuperSocket" Version="$(SuperSocketVersion)" />
+    <PackageVersion Include="SuperSocket.Client" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.2" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
