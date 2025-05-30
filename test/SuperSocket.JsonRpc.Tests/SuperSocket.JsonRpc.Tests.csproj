@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>
     <OutputType>Exe</OutputType>
     <DebugType>portable</DebugType>
@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit.v3" />
     <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="NRPC.Executor" />
     <PackageReference Include="SuperSocket.Connection" />
     <PackageReference Include="SuperSocket" />
     <PackageReference Include="SuperSocket.Client" />
@@ -20,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/SuperSocket.JsonRpc/SuperSocket.JsonRpc.csproj" />
+    <ProjectReference Include="../../src/SuperSocket.JsonRpc.Caller/SuperSocket.JsonRpc.Caller.csproj" />
   </ItemGroup>
 
   <ItemGroup>

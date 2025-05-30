@@ -6,7 +6,7 @@ using SuperSocket.Connection;
 
 namespace SuperSocket.JsonRpc.Caller
 {
-    public class JsonRpcCallerConnectionFactory : IRpcConnectionFactory
+    class JsonRpcCallerConnectionFactory : IRpcConnectionFactory
     {
         public EndPoint EndPoint { get; }
         

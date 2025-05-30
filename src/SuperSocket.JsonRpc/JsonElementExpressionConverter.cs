@@ -6,7 +6,7 @@ using NRPC.Abstractions.Metadata;
 
 namespace SuperSocket.JsonRpc;
 
-public class JsonElementParameterExpressionConverter : IParameterExpressionConverter
+public class JsonElementExpressionConverter : IExpressionConverter
 {
     public bool CanConvert(Type parameterType, Type sourceType)
     {
@@ -14,20 +14,18 @@ public class JsonElementParameterExpressionConverter : IParameterExpressionConve
         return sourceType == typeof(object) && IsSupportedTargetType(parameterType);
     }
 
-    public Expression Convert(Expression sourceExpression, ParameterInfo parameterInfo)
+    public Expression Convert(Expression sourceExpression, Type dataType)
     {
-        var parameterType = parameterInfo.ParameterType;
-        
-        if (!CanConvert(parameterType, sourceExpression.Type))
+        if (!CanConvert(dataType, sourceExpression.Type))
         {
-            throw new NotSupportedException($"Cannot convert from {sourceExpression.Type} to {parameterType}");
+            throw new NotSupportedException($"Cannot convert from {sourceExpression.Type} to {dataType}");
         }
 
         // Cast the source object to JsonElement
         var jsonElementExpression = Expression.Convert(sourceExpression, typeof(JsonElement));
 
         // Create the conversion expression based on the target type
-        return CreateConversionExpression(jsonElementExpression, parameterType);
+        return CreateConversionExpression(jsonElementExpression, dataType);
     }
 
     private bool IsSupportedTargetType(Type type)
