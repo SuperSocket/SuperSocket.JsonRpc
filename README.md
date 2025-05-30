@@ -66,12 +66,19 @@ public class TestService : ITestService
 ### Client Usage
 
 ```csharp
-// Use the client library to make remote calls
-var client = new JsonRpcClient();
-await client.ConnectAsync();
+// Create a caller factory with the server endpoint
+var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, 4040));
 
-var result = await client.CallAsync<int>("Add", 5, 3);
+// Create a type-safe caller
+var caller = await callerFactory.CreateCaller();
+
+// Make remote calls with full type safety
+var result = await caller.Add(5, 3);
 // result = 8
+
+// Other examples
+var message = await caller.Echo("Hello, JSON-RPC!");
+await caller.NotifyAsync("This is a notification");
 ```
 
 ## Testing
