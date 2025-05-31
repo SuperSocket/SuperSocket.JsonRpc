@@ -70,7 +70,7 @@ public class TestService : ITestService
 var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, 4040));
 
 // Create a type-safe caller
-var caller = await callerFactory.CreateCaller();
+var caller = await callerFactory.CreateCaller(cancellationToken);
 
 // Make remote calls with full type safety
 var result = await caller.Add(5, 3);

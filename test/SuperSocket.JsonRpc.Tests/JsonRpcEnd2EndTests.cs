@@ -34,7 +34,7 @@ public class JsonRpcEnd2EndTests
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
 
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         Assert.NotNull(caller);
 
@@ -53,7 +53,7 @@ public class JsonRpcEnd2EndTests
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
 
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         var exception = await Assert.ThrowsAsync<RpcServerException>(() => caller.Fail("This is a test failure").WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken));
         Assert.NotNull(exception);
@@ -70,7 +70,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test different mathematical operations
         var addResult = await caller.Add(10, 5).WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -91,7 +91,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test string concatenation
         var result = await caller.Concatenate("Hello", " World").WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -114,7 +114,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Clear any previous notification state
         JsonRpcServerService.LastNotifyMessage = null;
@@ -138,7 +138,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test state management with trigger mechanism
         var initialTriggerTimes = await caller.GetTriggerTimes().WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -162,7 +162,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act - Send multiple concurrent requests
         var tasks = new List<Task<int>>();
@@ -191,7 +191,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test with large numbers
         var result1 = await caller.Add(int.MaxValue - 1, 1).WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -212,14 +212,14 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller1 = await callerFactory.CreateCaller();
+        var caller1 = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act - Use first caller, then create a new one
         var result1 = await caller1.Add(10, 20).WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
         Assert.Equal(30, result1);
 
         // Create a second caller (simulating connection recovery)
-        var caller2 = await callerFactory.CreateCaller();
+        var caller2 = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
         var result2 = await caller2.Add(50, 25).WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
         Assert.Equal(75, result2);
 
@@ -240,7 +240,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act - Measure time for multiple sequential calls
         const int callCount = 100;
@@ -269,7 +269,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test division operations
         var result1 = await caller.Divide(10.0, 2.0).WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -292,7 +292,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test boolean operations
         var evenResult = await caller.IsEven(4).WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -313,7 +313,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test string splitting
         var result1 = await caller.SplitString("hello,world,test", ',').WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -338,7 +338,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test batch processing
         var items = new[] { "item1", "item2", "item3", "item4" };
@@ -357,7 +357,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test DateTime operations
         var beforeCall = DateTime.UtcNow;
@@ -377,7 +377,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test different types of exceptions
         var exception1 = await Assert.ThrowsAsync<RpcServerException>(() => 
@@ -397,7 +397,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act - Mix different types of operations concurrently
         var addTask = caller.Add(10, 20).WaitAsync(TimeSpan.FromSeconds(10), TestContext.Current.CancellationToken);
@@ -433,7 +433,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test null and empty string handling
         var emptyResult = await caller.Concatenate("", "").WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -457,7 +457,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test edge case numbers
         var minValue = await caller.Add(int.MinValue, 0).WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -482,7 +482,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test Unicode and special characters
         var unicodeResult = await caller.Concatenate("Hello 🌍", " World 🚀").WaitAsync(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
@@ -508,7 +508,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test large array processing
         var largeString = string.Join(",", Enumerable.Range(1, 1000).Select(i => $"item{i}"));
@@ -533,7 +533,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         const int operationCount = 50;
 
@@ -577,7 +577,7 @@ public class JsonRpcEnd2EndTests
         var callers = new List<ITestService>();
         for (int i = 0; i < 5; i++)
         {
-            callers.Add(await callerFactory.CreateCaller());
+            callers.Add(await callerFactory.CreateCaller(TestContext.Current.CancellationToken));
         }
 
         var allTasks = new List<Task<int>>();
@@ -617,7 +617,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test DateTime precision and consistency
         var before = DateTime.UtcNow;
@@ -641,7 +641,7 @@ public class JsonRpcEnd2EndTests
         await host.StartAsync(TestContext.Current.CancellationToken);
 
         var callerFactory = new JsonRpcCallerFactory<ITestService>(new IPEndPoint(IPAddress.Loopback, _testPort));
-        var caller = await callerFactory.CreateCaller();
+        var caller = await callerFactory.CreateCaller(TestContext.Current.CancellationToken);
 
         // Act & Assert - Test various boolean logic scenarios
         var testCases = new[]

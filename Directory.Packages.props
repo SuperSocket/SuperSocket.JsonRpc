@@ -2,15 +2,18 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <SuperSocketVersion>2.0.2-beta.1</SuperSocketVersion>
+    <NRPCVersion>0.1.0-beta.1.29</NRPCVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="NRPC.Abstractions" Version="0.1.0-beta.1.27" />
-    <PackageVersion Include="NRPC.Caller" Version="0.1.0-beta.1.27" />
-    <PackageVersion Include="NRPC.Executor" Version="0.1.0-beta.1.27" />
+    <PackageVersion Include="NRPC.Abstractions" Version="$(NRPCVersion)" />
+    <PackageVersion Include="NRPC.Caller" Version="$(NRPCVersion)" />
+    <PackageVersion Include="NRPC.Executor" Version="$(NRPCVersion)" />
+    <PackageVersion Include="NRPC.SuperSocket.Server" Version="$(NRPCVersion)" />
     <PackageVersion Include="SuperSocket.ProtoBase" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket.Connection" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket.Client" Version="$(SuperSocketVersion)" />
+    <PackageVersion Include="SuperSocket.Server.Abstractions" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.2" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
