@@ -23,7 +23,6 @@ public static class Extensions
                 services.AddSingleton<IPackageEncoder<JsonRpcResponse>, JsonRpcResponseEncoder>();
                 services.AddSingleton<IExpressionConverter, JsonElementExpressionConverter>();
                 services.AddSingleton<IRpcCallingAdapter, JsonRpcCallerAdapter>();
-                services.AddSingleton<CompiledServiceHandler<TServiceContract>>(provider => new CompiledServiceHandler<TServiceContract>(ServiceMetadata.Create<TServiceContract>(provider.GetRequiredService<IExpressionConverter>()), new JsonRpcCallerAdapter()));
             });
     }
 }

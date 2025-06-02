@@ -661,11 +661,6 @@ public class JsonRpcEnd2EndTests
 
     private IHost SetupServer()
     {
-        var responseEncoder = new JsonRpcResponseEncoder();
-        var serviceHandler = new CompiledServiceHandler<ITestService>(
-            ServiceMetadata.Create<ITestService>(new JsonElementExpressionConverter()),
-            new JsonRpcCallerAdapter());
-
         var hostBuilder = SuperSocketHostBuilder.Create<JsonRpcRequest>()
             .UseJsonRpcServer<ITestService, JsonRpcServerService>()
             .ConfigureSuperSocket(options =>
