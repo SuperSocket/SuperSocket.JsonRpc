@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NRPC.Abstractions;
 using NRPC.Abstractions.Metadata;
+using NRPC.Executor;
 using NRPC.SuperSocket.Server;
 using SuperSocket.ProtoBase;
 using SuperSocket.Server.Abstractions.Host;
@@ -20,9 +21,9 @@ public static class Extensions
             .ConfigureServices((ctx, services) =>
             {
                 services.AddSingleton<IPackageEncoder<JsonRpcResponse>, JsonRpcResponseEncoder>();
-                services.AddSingleton<JsonRpcResponseDecoder>();
                 services.AddSingleton<IExpressionConverter, JsonElementExpressionConverter>();
                 services.AddSingleton<IRpcCallingAdapter, JsonRpcCallerAdapter>();
+                services.AddSingleton<CompiledServiceHandler<TServiceContract>>(provider => new CompiledServiceHandler<TServiceContract>(ServiceMetadata.Create<TServiceContract>(provider.GetRequiredService<IExpressionConverter>()), new JsonRpcCallerAdapter()));
             });
     }
 }

@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="../../src/SuperSocket.JsonRpc/SuperSocket.JsonRpc.csproj" />
     <ProjectReference Include="../../src/SuperSocket.JsonRpc.Caller/SuperSocket.JsonRpc.Caller.csproj" />
+    <ProjectReference Include="../../src/SuperSocket.JsonRpc.Server/SuperSocket.JsonRpc.Server.csproj" />
   </ItemGroup>
 
   <ItemGroup>

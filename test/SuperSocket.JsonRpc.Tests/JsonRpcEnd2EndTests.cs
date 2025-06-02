@@ -1,22 +1,16 @@
 using System.Net;
-using System.Text;
-using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NRPC.Abstractions.Metadata;
 using NRPC.Caller;
 using NRPC.Executor;
-using SuperSocket;
-using SuperSocket.Client;
-using SuperSocket.Connection;
-using SuperSocket.JsonRpc;
+using NRPC.SuperSocket.Server;
 using SuperSocket.JsonRpc.Caller;
-using SuperSocket.Server;
+using SuperSocket.JsonRpc.Server;
 using SuperSocket.Server.Abstractions;
-using SuperSocket.Server.Abstractions.Session;
 using SuperSocket.Server.Host;
+using Xunit.Sdk;
 
 namespace SuperSocket.JsonRpc.Tests;
 
@@ -672,15 +666,8 @@ public class JsonRpcEnd2EndTests
             ServiceMetadata.Create<ITestService>(new JsonElementExpressionConverter()),
             new JsonRpcCallerAdapter());
 
-        var hostBuilder = SuperSocketHostBuilder.Create<JsonRpcRequest, JsonRpcRequestPipelineFilter>()
-            .UseHostedService<JsonRpcServerService>()
-            .UsePipelineFilter<JsonRpcRequestPipelineFilter>()
-            .UsePackageDecoder<JsonRpcRequestDecoder>()
-            .UsePackageHandler<JsonRpcRequest>(async (session, request) =>
-            {
-                var response = await serviceHandler.HandleRequestAsync(session.Server as ITestService, request);
-                await session.SendAsync(responseEncoder, response as JsonRpcResponse);
-            })
+        var hostBuilder = SuperSocketHostBuilder.Create<JsonRpcRequest>()
+            .UseJsonRpcServer<ITestService, JsonRpcServerService>()
             .ConfigureSuperSocket(options =>
             {
                 options.Name = "JsonRpcServer";
@@ -737,18 +724,13 @@ public interface ITestService
 }
 
 // Mock JSON-RPC server service for testing
-public class JsonRpcServerService : SuperSocketService<JsonRpcRequest>, ITestService
+public class JsonRpcServerService : ITestService
 {
     private int _triggerTimes;
     private readonly List<string> _batchItems = new();
     
     // Use a static field to ensure we can check the notification state across instances
     public static string LastNotifyMessage { get; set; }
-
-    public JsonRpcServerService(IServiceProvider serviceProvider, IOptions<ServerOptions> serverOptions)
-        : base(serviceProvider, serverOptions)
-    {
-    }
 
     public Task<int> Add(int a, int b)
     {
