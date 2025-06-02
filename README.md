@@ -1,5 +1,7 @@
 # SuperSocket.JsonRpc
 
+[![build](https://github.com/SuperSocket/SuperSocket.JsonRpc/actions/workflows/build.yml/badge.svg)](https://github.com/SuperSocket/SuperSocket.JsonRpc/actions/workflows/build.yml)
+
 A comprehensive JSON-RPC 2.0 implementation built on top of SuperSocket, providing high-performance remote procedure call capabilities with full type conversion support and robust error handling.
 
 ## Features
