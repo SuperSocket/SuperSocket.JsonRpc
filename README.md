@@ -63,8 +63,7 @@ public class TestService : ITestService
 }
 
 // SuperSocket server setup
-var hostBuilder = SuperSocketHostBuilder.Create<JsonRpcRequest>()
-    .UseJsonRpcServer<ITestService, TestService>()
+var hostBuilder = JsonRpcHostBuilder.Create<ITestService, TestService>()
     .ConfigureSuperSocket(options =>
     {
         options.Name = "JsonRpcServer";

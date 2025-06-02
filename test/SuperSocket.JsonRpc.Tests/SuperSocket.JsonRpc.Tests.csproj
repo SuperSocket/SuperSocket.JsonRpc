@@ -15,7 +15,7 @@
     <PackageReference Include="xunit.runner.visualstudio" />
     <PackageReference Include="NRPC.Executor" />
     <PackageReference Include="SuperSocket.Connection" />
-    <PackageReference Include="SuperSocket" />
+    <PackageReference Include="SuperSocket.Server" />
     <PackageReference Include="SuperSocket.Client" />
   </ItemGroup>
 

@@ -11,7 +11,7 @@
     <PackageVersion Include="NRPC.SuperSocket.Server" Version="$(NRPCVersion)" />
     <PackageVersion Include="SuperSocket.ProtoBase" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket.Connection" Version="$(SuperSocketVersion)" />
-    <PackageVersion Include="SuperSocket" Version="$(SuperSocketVersion)" />
+    <PackageVersion Include="SuperSocket.Server" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket.Client" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="SuperSocket.Server.Abstractions" Version="$(SuperSocketVersion)" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
