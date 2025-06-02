@@ -61,6 +61,25 @@ public class TestService : ITestService
     public async Task<string> Echo(string message) => message;
     public async Task NotifyAsync(string message) { /* handle notification */ }
 }
+
+// SuperSocket server setup
+var hostBuilder = SuperSocketHostBuilder.Create<JsonRpcRequest>()
+    .UseJsonRpcServer<ITestService, TestService>()
+    .ConfigureSuperSocket(options =>
+    {
+        options.Name = "JsonRpcServer";
+        options.Listeners = new List<ListenOptions>
+        {
+            new ListenOptions
+            {
+                Ip = "127.0.0.1",
+                Port = 4040
+            }
+        };
+    });
+
+using var host = hostBuilder.Build();
+await host.StartAsync();
 ```
 
 ### Client Usage
