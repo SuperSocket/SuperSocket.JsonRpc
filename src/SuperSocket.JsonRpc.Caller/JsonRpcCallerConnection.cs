@@ -22,6 +22,18 @@ class JsonRpcCallerConnection : EasyClient<JsonRpcResponse>, IRpcConnection
     {
     }
 
+    public bool IsConnected => this.Connection != null && !this.Connection.IsClosed;
+
+    public void Dispose()
+    {
+        DisposeAsync().GetAwaiter().GetResult();
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        return CloseAsync();
+    }
+
     public async Task<RpcResponse> ReceiveAsync(CancellationToken cancellationToken = default)
     {
         return await base.ReceiveAsync();

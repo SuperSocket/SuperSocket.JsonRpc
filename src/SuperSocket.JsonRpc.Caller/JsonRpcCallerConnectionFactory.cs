@@ -1,8 +1,7 @@
 using System;
 using System.Net;
 using NRPC.Abstractions;
-using NRPC.Caller;
-using SuperSocket.Connection;
+using NRPC.Caller.Connection;
 
 namespace SuperSocket.JsonRpc.Caller
 {
