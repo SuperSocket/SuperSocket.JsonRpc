@@ -17,7 +17,7 @@ namespace SuperSocket.JsonRpc.Caller
             EndPoint = endPoint;
         }
 
-        public async Task<IRpcConnection> CreateConnection(CancellationToken cancellationToken)
+        public async Task<IRpcConnection> CreateConnectionAsync(CancellationToken cancellationToken)
         {
             var connection = new JsonRpcCallerConnection();
             await connection.AsClient().ConnectAsync(EndPoint, cancellationToken);
